@@ -15,7 +15,7 @@ UNetworkLibrary::UNetworkLibrary()
     SocketReader->OnData.AddUObject(this, &UNetworkLibrary::OnMsgData);
     SocketReader->OnClosed.AddUObject(this, &UNetworkLibrary::OnClosed);
 
-    RegisterHandler(-1, [ this ](FSocketArchive& Ar) { OnKillFromServer(Ar); });
+    RegisterHandler(UINT_MAX, [ this ](FSocketArchive& Ar) { OnKillFromServer(Ar); });
 }
 
 UNetworkLibrary::~UNetworkLibrary()
@@ -92,7 +92,7 @@ void UNetworkLibrary::OnClosed()
     }
 }
 
-bool UNetworkLibrary::ConnectToServer(FString ServerIP, int32 ServerPort, int32 BufferSize)
+bool UNetworkLibrary::ConnectToServer(const FString& ServerIP, int32 ServerPort, int32 BufferSize)
 {
     if (SocketReader->IsConnected)
         return true;
