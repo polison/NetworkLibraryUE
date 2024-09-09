@@ -2,6 +2,30 @@
 
 UE C++ 对标 <a href="https://github.com/polison/NetworkLibrary">NetworkLibrary<a> 的框架.
 
+## Import Warning
+FSocketArchive 类读写方法 请使用数字类型,int8,uint8,int16,uint16,int32,uint32,int64,uint64,float,double.
+```
+/// <summary>
+/// 按类型读取:主要使用数字类型
+/// </summary>
+template<typename T>
+T Read()
+{
+    T value;
+    *Reader << value;
+    return value;
+}
+
+/// <summary>
+/// 按类型写入:主要使用数字类型
+/// </summary>
+template<typename T>
+void Write(T& Value)
+{
+    *Ar << Value;
+}
+```
+
 ## How to use
 
 #一个指令枚举, 不要注册UINT_MAX.UINT_MAX被作为网络断线信号处理了.
