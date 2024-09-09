@@ -1,0 +1,24 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0",
+	"FriendlyName": "NetworkLibrary",
+	"Description": "NetworkLibrary For UE.",
+	"Category": "Network",
+	"CreatedBy": "Polison",
+	"CreatedByURL": "",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"CanContainContent": true,
+	"IsBetaVersion": false,
+	"IsExperimentalVersion": false,
+	"Installed": false,
+	"Modules": [
+		{
+			"Name": "NetworkLibrary",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	]
+}
