@@ -92,15 +92,20 @@ void UNetworkLibrary::OnClosed()
     }
 }
 
-bool UNetworkLibrary::ConnectToServer(const FString& ServerIP, int32 ServerPort, int32 BufferSize)
+bool UNetworkLibrary::ConnectToServer(FString& errorMsg, const FString& ServerIP, int32 ServerPort, int32 BufferSize)
 {
+    errorMsg = FString();
     if (SocketReader->IsConnected)
         return true;
 
     OnClosed();
     Socket = SocketSystem->CreateSocket(NAME_Stream, TEXT("SOCKET"), FNetworkProtocolTypes::IPv4);
     if (!Socket)
+    {
+        errorMsg = TEXT("Create Socket Error!");
+        GLog->Log(errorMsg);
         return false;
+    }
 
     Socket->SetNoDelay();
     Socket->SetNonBlocking();
@@ -108,9 +113,26 @@ bool UNetworkLibrary::ConnectToServer(const FString& ServerIP, int32 ServerPort,
     Socket->SetReceiveBufferSize(BufferSize, BufferSize);
 
     TSharedPtr<FInternetAddr> serverAddr = SocketSystem->CreateInternetAddr(FNetworkProtocolTypes::IPv4);
+#if ENGINE_MAJOR_VERSION >= 5 || (ENGINE_MAJOR_VERSION == 4 && ENGINE_MINOR_VERSION >= 23)
+    FAddressInfoResult result = SocketSystem->GetAddressInfo(*ServerIP, nullptr, EAddressInfoFlags::Default, FNetworkProtocolTypes::IPv4);
+    if (result.ReturnCode != ESocketErrors::SE_NO_ERROR)
+    {
+        errorMsg = FString::Printf(TEXT("Get server ip with error [%d]"), result.ReturnCode);
+        GLog->Log(errorMsg);
+        return false;
+    }
+    serverAddr = result.Results[0].Address;
+#else
     SocketSystem->GetHostByName(TCHAR_TO_ANSI(*ServerIP), *serverAddr);
+    if (!serverAddr.IsValid())
+    {
+        errorMsg = TEXT("Get server ip with error ");
+        GLog->Log(errorMsg);
+        return false;
+    }
+#endif
     serverAddr->SetPort(ServerPort);
-    SocketReader->Initialzie(Socket, serverAddr , SocketSystem);
+    SocketReader->Initialzie(Socket, serverAddr, SocketSystem);
 
     if (NetworkThread != nullptr)
     {
@@ -119,6 +141,7 @@ bool UNetworkLibrary::ConnectToServer(const FString& ServerIP, int32 ServerPort,
     }
 
     NetworkThread = FRunnableThread::Create(SocketReader, TEXT("Socket Network Thread"));
+
     return true;
 }
 

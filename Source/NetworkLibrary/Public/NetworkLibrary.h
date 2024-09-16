@@ -50,7 +50,7 @@ private:
 
 public:
     UFUNCTION(BlueprintCallable, Category = "NetworkLibrary")
-    bool ConnectToServer(const FString& ServerIP, int32 ServerPort, int32 BufferSize = 0x4000);
+    bool ConnectToServer(FString& errorMsg, const FString& ServerIP, int32 ServerPort, int32 BufferSize = 0x4000);
 
     UFUNCTION(BlueprintCallable, Category = "NetworkLibrary")
     bool IsConnected();
