@@ -1,4 +1,4 @@
-// Copyright Epic Games, Inc. All Rights Reserved.
+ï»¿// Copyright Epic Games, Inc. All Rights Reserved.
 
 #pragma once
 
@@ -23,7 +23,7 @@ struct FInfoBase
 };
 
 /*
- * Çë»ùÓÚ´ËÀà´´½¨×ÓÀàÊµÏÖ×Ô¼ºµÄ·½·¨,¾¡Á¿²»ÒªĞŞ¸Ä±¾Àà.
+ * è¯·åŸºäºæ­¤ç±»åˆ›å»ºå­ç±»å®ç°è‡ªå·±çš„æ–¹æ³•,å°½é‡ä¸è¦ä¿®æ”¹æœ¬ç±».
  */
 UCLASS()
 class NETWORKLIBRARY_API UNetworkLibrary : public UGameInstanceSubsystem, public FTickableGameObject

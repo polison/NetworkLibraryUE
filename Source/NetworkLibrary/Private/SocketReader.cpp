@@ -1,4 +1,4 @@
-#include "SocketReader.h"
+﻿#include "SocketReader.h"
 #include <Networking.h>
 
 #include "SocketPacket.h"

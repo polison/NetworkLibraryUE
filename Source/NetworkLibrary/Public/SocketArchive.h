@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
@@ -23,7 +23,7 @@ private:
 
 public:
     /// <summary>
-    /// °´ÀàĞÍ¶ÁÈ¡:Ö÷ÒªÊ¹ÓÃÊı×ÖÀàĞÍ
+    /// æŒ‰ç±»å‹è¯»å–:ä¸»è¦ä½¿ç”¨æ•°å­—ç±»å‹
     /// </summary>
     template<typename T>
     T Read()
@@ -38,7 +38,7 @@ public:
     TArray<uint8> Read(int32 Length);
 
     /// <summary>
-   /// °´ÀàĞÍĞ´Èë:Ö÷ÒªÊ¹ÓÃÊı×ÖÀàĞÍ
+   /// æŒ‰ç±»å‹å†™å…¥:ä¸»è¦ä½¿ç”¨æ•°å­—ç±»å‹
    /// </summary>
     template<typename T>
     void Write(T& Value)

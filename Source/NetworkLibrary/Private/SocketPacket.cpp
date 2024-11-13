@@ -1,4 +1,4 @@
-#include "SocketPacket.h"
+﻿#include "SocketPacket.h"
 
 FSocketPacket::FSocketPacket()
 {
