@@ -14,6 +14,8 @@ uint32 FSocketReader::Run()
 {
     IsConnected = socket->Connect(*serverAddr);
     TArray<uint8> RecvTemp;
+    if (IsConnected)
+        OnData.Broadcast(UINT_MAX - 1, RecvTemp);
     RecvTemp.SetNumUninitialized(1);
     int32 iReadBytes = 0;
     uint32 iPendingBytes = 0;

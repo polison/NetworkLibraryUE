@@ -16,6 +16,7 @@ UNetworkLibrary::UNetworkLibrary()
     SocketReader->OnClosed.AddUObject(this, &UNetworkLibrary::OnClosed);
 
     RegisterHandler(UINT_MAX, [ this ](FSocketArchive& Ar) { OnKillFromServer(Ar); });
+    RegisterHandler(UINT_MAX - 1, [ this ](FSocketArchive& Ar) { OnConnectedServer(Ar); });
 }
 
 UNetworkLibrary::~UNetworkLibrary()
@@ -169,4 +170,9 @@ void UNetworkLibrary::RegisterHandler(const uint32& Opcode, const HandlerFn& Han
 void UNetworkLibrary::OnKillFromServer(FSocketArchive& Ar)
 {
     OnKilled.Broadcast();
+}
+
+void UNetworkLibrary::OnConnectedServer(FSocketArchive& Ar)
+{
+    OnConnected.Broadcast();
 }

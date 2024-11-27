@@ -28,7 +28,10 @@ void Write(T& Value)
 
 ## How to use
 
-#一个指令枚举, 不要注册UINT_MAX.UINT_MAX被作为网络断线信号处理了.
+#一个指令枚举<br/>
+不要注册UINT_MAX,UINT_MAX-1.<br/>
+UINT_MAX被作为网络断线信号处理了.<br/>
+UINT_MAX-1被作为网络连接完成信号处理了.
 ```
 enum ENetOpcode : uint32
 {

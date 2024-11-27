@@ -87,6 +87,13 @@ public:
     UPROPERTY(EditAnywhere, BlueprintAssignable, Category = "NetworkLibrary")
     FOnKilled OnKilled;
 
+    DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnConnected);
+
+    UPROPERTY(EditAnywhere, BlueprintAssignable, Category = "NetworkLibrary")
+    FOnConnected OnConnected;
+
 private:
     void OnKillFromServer(FSocketArchive& Ar);
+
+    void OnConnectedServer(FSocketArchive& Ar);
 };
