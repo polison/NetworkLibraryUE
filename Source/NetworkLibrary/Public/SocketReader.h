@@ -17,6 +17,7 @@ public:
     virtual void Stop() override;
 
 private:
+    const uint32 maxPacketLength = 100 * 1024 * 1024;
 
     const uint32 maxLength = 0x4000;
 

@@ -39,7 +39,7 @@ uint32 FSocketReader::Run()
                     FSocketPacket packet;
                     uint32 cmd = packet.GetOpcode(RecvArchive);
                     uint32 length = packet.GetLength(RecvArchive);
-                    if (maxLength < length)
+                    if (maxPacketLength < length)
                     {
                         GLog->Logf(TEXT("get a larger packet[{%d}] with length[{%d}], closed."), cmd, length);
                         Stop();
